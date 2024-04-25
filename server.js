@@ -4,9 +4,14 @@ import http from "http";
 const PORT = 8888;
 
 const server = http.createServer((req, res) => {
-  res.write("Hello World");
+  // res.setHeader("Content-Type", "text/html");
+  // res.statusCode = 404;
+  // res.write("Hello World");
+
+  res.writeHead(500, { "Content-Type": "application/json" });
+
   // If I used Express it'd do the end() part automatically for me
-  res.end();
+  res.end(JSON.stringify({ message: "Server Error" }));
 });
 
 server.listen(PORT, () => {
