@@ -23,7 +23,7 @@ console.log(__dirname);
 
 const PORT = process.env.PORT;
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   // res.setHeader("Content-Type", "text/html");
   // res.statusCode = 404;
   // res.write("Hello World");
@@ -33,18 +33,23 @@ const server = http.createServer((req, res) => {
   try {
     // Check if GET request
     if (req.method === "GET") {
-      if (req.url === "/") {
-        res.writeHead(200, { "Content-Type": "text/html" });
+      let filePath;
 
-        // If I used Express it'd do the end() part automatically for me
-        res.end("<h1>Homepage</h1>");
+      if (req.url === "/") {
+        // res.writeHead(200, { "Content-Type": "text/html" });
+        // // If I used Express it'd do the end() part automatically for me
+        // res.end("<h1>Homepage</h1>");
+        filePath = path.join(__dirname, "public", "index.html");
       } else if (req.url === "/about") {
-        res.writeHead(200, { "Content-Type": "text/html" });
-        res.end("<h1>About</h1>");
+        filePath = path.join(__dirname, "public", "about.html");
       } else {
-        res.writeHead(404, { "Content-Type": "text/html" });
-        res.end("<h1>Not Found</h1>");
+        throw new Error("Page not found");
       }
+
+      const data = await fs.readFile(filePath);
+      res.setHeader("Content-Type", "text/html");
+      res.write(data);
+      res.end();
     } else {
       throw new Error("Method not allowed");
     }
