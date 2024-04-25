@@ -1,6 +1,26 @@
 // Express uses this module
 import http from "http";
 
+import fs from "fs/promises";
+
+import url from "url";
+
+import path from "path";
+
+// Get current path in CommonJS these are inbuilt
+// __filename;
+// __dirname;
+// these are NOT available in the modern ES Modules,
+// instead you have to write your own like so using "path" & "url"
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// E:\Sites\nodeJS2024\server.js
+console.log(__filename);
+// E:\Sites\nodeJS2024
+console.log(__dirname);
+
 const PORT = process.env.PORT;
 
 const server = http.createServer((req, res) => {
