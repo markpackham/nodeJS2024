@@ -12,6 +12,11 @@ const server = createServer((req, res) => {
   if (req.url === "/api/users" && req.method === "GET") {
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify(users));
+  }
+  // Using regular expression
+  else if (req.url.match(/\/api\/users\/([0-9]+)/) && req.method === "GET") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ id: 1, name: "Johnny Joe" }));
   } else {
     // Older way
     // res.setHeader("Content-Type", "application/json");
