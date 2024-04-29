@@ -20,3 +20,15 @@ import fs from "fs/promises";
 fs.readFile("./test.txt", "utf-8")
   .then((data) => console.log(data))
   .catch((err) => console.log(err));
+
+// readFile() -async/await - looks more like old readFileSync() than the promise above
+const readFile = async () => {
+  try {
+    const data = await fs.readFile("./test.txt", "utf8");
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+readFile();
