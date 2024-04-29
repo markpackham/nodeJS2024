@@ -14,6 +14,15 @@ const logger = (req, res, next) => {
   next();
 };
 
+// JSON Middleware
+const jsonMiddleware = (req, res, next) => {
+  res.setHeader("Content-Type", "application/json");
+  next();
+};
+
+// Route handler for GET /api/users
+const getUsersHandler = (req, res) => {};
+
 const server = createServer((req, res) => {
   logger(req, res, () => {
     if (req.url === "/api/users" && req.method === "GET") {
@@ -27,10 +36,10 @@ const server = createServer((req, res) => {
       const user = users.find((user) => user.id === parseInt(id));
       //res.setHeader("Content-Type", "application/json");
       if (user) {
-        res.writeHead(200, { "Content-Type": "application/json" });
+        res.statusCode = 200;
         res.end(JSON.stringify(user));
       } else {
-        res.writeHead(404, { "Content-Type": "application/json" });
+        res.statusCode = 404;
         res.end(JSON.stringify({ message: "User not found!" }));
       }
       //res.end();
