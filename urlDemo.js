@@ -39,3 +39,9 @@ const params = new URLSearchParams(urlObj.search);
 console.log(params);
 // hello world
 console.log(params.get("q"));
+params.append("limit", "5");
+// URLSearchParams { 'q' => 'hello world', 'limit' => '5' }
+console.log(params);
+params.delete("limit");
+// URLSearchParams { 'q' => 'hello world' }
+console.log(params);
