@@ -20,3 +20,9 @@ myEmitter.emit("greet", "John");
 myEmitter.emit("goodbye", "Bob");
 
 // Error handling
+myEmitter.on("error", (err) => {
+  console.log("An Error Occurred:", err);
+});
+
+// Simulate error
+myEmitter.emit("error", new Error("Hi I am an ERROR!!!!"));
