@@ -20,3 +20,30 @@ console.log(process.argv);
 console.log(process.argv[3]);
 
 // process.env
+// console.log(process.env);
+console.log(process.env.HOSTNAME);
+
+// pid (process id)
+console.log(process.pid);
+
+// cwd (current working directory)
+console.log(process.cwd());
+
+// title
+console.log(process.title);
+
+// memoryUsage()
+console.log(process.memoryUsage());
+
+// update()
+console.log(process.uptime());
+
+// We can use exit to trigger a callback
+process.on("exit", (code) => {
+  console.log(`About to exit with code: ${code}`);
+});
+
+// // exit()
+process.exit(0);
+// // Won't get logged since process already exited
+// console.log("Hello from after exit");
