@@ -23,3 +23,19 @@ console.log(urlObj.pathname);
 
 // format()
 console.log(url.format(urlObj));
+
+// Not actually part of the "url" module
+// import.metal.url - gives file URL
+console.log(import.meta.url);
+
+// fileURLToPath()
+// convert to regular path
+console.log(url.fileURLToPath(import.meta.url));
+
+console.log(urlObj.search);
+
+const params = new URLSearchParams(urlObj.search);
+// URLSearchParams { 'q' => 'hello world' }
+console.log(params);
+// hello world
+console.log(params.get("q"));
